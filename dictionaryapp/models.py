@@ -2,7 +2,7 @@ from django.db import models
 
 class Language(models.Model):
     name = models.CharField(max_length=255)
-    is_default = models.TextField()
+    is_default = models.BooleanField()
 
 class Dictionary(models.Model):
     code = models.CharField(max_length=42)
