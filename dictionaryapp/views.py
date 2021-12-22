@@ -1,4 +1,3 @@
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
@@ -8,6 +7,7 @@ from .models import Language
 from .serializer import DictionarySerializer
 from .serializer import LanguageSerializer
 
+# This 'GET' method give to client information about site's URL. And which URL we have.
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
 def apiOverview(request):
@@ -20,6 +20,7 @@ def apiOverview(request):
     }
     return Response(api_urls)
 
+# Giving list of our table values
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
 def dictionaryList(request):
@@ -27,6 +28,7 @@ def dictionaryList(request):
     serializer = DictionarySerializer(dictionary, many=True)
     return Response(serializer.data)
 
+# Creating new values
 @api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
 def dictionaryCreate(request):
@@ -36,6 +38,7 @@ def dictionaryCreate(request):
         serializer.save()
     return Response(serializer.data)
 
+# Updating our value
 @api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
 def dictionaryUpdate(request, pk):
@@ -46,6 +49,7 @@ def dictionaryUpdate(request, pk):
         serializer.save()
     return Response(serializer.data)
 
+# Deleting value
 @api_view(['DELETE'])
 @permission_classes((permissions.AllowAny,))
 def dictionaryDelete(request, pk):
@@ -53,6 +57,7 @@ def dictionaryDelete(request, pk):
     dictionary.delete()
     return Response("Task Deleted Successfully")
 
+# Showing 1 item of our table
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
 def dictionaryItem(request, pk):
@@ -61,7 +66,10 @@ def dictionaryItem(request, pk):
     return Response(serializer.data)
 
 
+# After this comment we done 'CRUD' for 2 table 'Language'
 
+
+# Giving list of our table values
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
 def languageList(request):
@@ -69,6 +77,7 @@ def languageList(request):
     serializer = LanguageSerializer(language, many=True)
     return Response(serializer.data)
 
+# Creating new values
 @api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
 def languageCreate(request):
@@ -78,6 +87,7 @@ def languageCreate(request):
         serializer.save()
     return Response(serializer.data)
 
+# Updating our value
 @api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
 def languageUpdate(request, pk):
@@ -88,6 +98,7 @@ def languageUpdate(request, pk):
         serializer.save()
     return Response(serializer.data)
 
+# Deleting value
 @api_view(['DELETE'])
 @permission_classes((permissions.AllowAny,))
 def languageDelete(request, pk):
@@ -95,6 +106,7 @@ def languageDelete(request, pk):
     language.delete()
     return Response("Task Deleted Successfully")
 
+# Showing 1 item of our table
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
 def languageItem(request, pk):
