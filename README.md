@@ -1,6 +1,6 @@
 ### GET ALL ITEM ###
 
-URL: api/language-list                
+URL: api/dictionary-list                
 
 ```yaml
 Method: 'GET'
@@ -178,6 +178,170 @@ For Example:
 We write URL like this:
 ```yaml
 api/dictionary/2
+```
+ 
+
+and choose method: "DELETE"
+
+we take :
+```yaml
+"Task Deleted Successfully"
+```
+
+### GET ALL ITEM ###
+
+URL: api/language-list                
+
+```yaml
+Method: 'GET'
+```
+
+This url gives us the all items we have in our table(JSON format)
+
+For Example:
+```yaml
+id | name | id_default
+
+1 |	"KZ" |	true
+
+2 |	"RU" |	false
+
+3 |	"ENG" |	false
+```
+After our query:
+
+Give this result:
+```yaml
+[
+    {
+        "id": 1,
+        "name": "KZ",
+        "is_default": true
+    },
+    {
+        "id": 2,
+        "name": "RU",
+        "is_default": false
+    },
+    {
+        "id": 3,
+        "name": "ENG",
+        "is_default": false
+    }
+]
+```
+
+### CREATE ITEM ###
+
+```yaml
+URL: app/language/
+``` 
+
+```yaml
+Method: 'POST'
+```
+
+This url gives us chance to create item(we must write query by JSON)
+
+For Example:
+
+We write query like this:
+
+```yaml
+{
+    "name": "JPN",
+    "is_default": false
+}
+```
+and then it seems like :
+```yaml
+{
+    "id": 5,
+    "name": "JPN",
+    "is_default": false
+}
+```
+    
+
+### GET ITEM ###
+
+URL: app/language/<str:pk>/   
+where: <str:pk>/ is 'id'
+
+```yaml
+Method: 'GET'
+```
+
+This url gives us only 1 item where 'id' is <str:pk>
+
+For Example:
+
+We write URL like this:
+```yaml
+api/language/2
+``` 
+
+and choose method: "GET"
+
+we take :
+```yaml
+{
+    "id": 2,
+    "name": "RU",
+    "is_default": false
+}
+```
+
+### UPDATE ###
+
+URL: app/language/<str:pk>   
+where: <str:pk> is 'id'
+
+```yaml
+Method: 'PUT'
+```
+This url can replace our item by the new one.(update by 'id')
+
+For Example:
+
+We write URL like this:
+```yaml
+api/language/5
+```
+
+and write in body:
+```yaml
+{
+    "name": "CHN",
+    "is_default": false
+}
+```
+
+and choose method: "PUT"
+
+we take :
+```yaml
+{
+    "id": 5,
+    "name": "CHN",
+    "is_default": false
+}
+```
+### DELETE ###
+
+URL: app/language/<str:pk>   
+where: <str:pk> is 'id'
+```yaml
+Method: 'DELETE'
+```
+
+This method 'delete' item by 'id'
+
+For Example:
+
+We write URL like this:
+```yaml
+api/language/5
 ```
  
 

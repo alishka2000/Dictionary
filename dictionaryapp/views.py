@@ -1,3 +1,6 @@
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
@@ -43,19 +46,20 @@ def dictionaries(request):
             serializer.save()
         return Response(serializer.data)
 
-
+@csrf_exempt
 @permission_classes((permissions.AllowAny,))
 def languages(request):
     if request.method == 'GET':
-        language = Language.objects.all()
-        serializer = DictionarySerializer(language, many=True)
-        return Response(serializer.data)
+        languages = Language.objects.all()
+        serializer = LanguageSerializer(languages, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':
-        serializer = LanguageSerializer(data=request.data)
+        data = JSONParser().parse(request)
+        serializer = LanguageSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-        return Response(serializer.data)
+        return JsonResponse(serializer.data)
 
 
 
@@ -81,26 +85,28 @@ def dictionary(request, pk):
         dictionary.delete()
         return Response("Task Deleted Successfully")
 
+@csrf_exempt
 @permission_classes((permissions.AllowAny,))
 def language(request, pk):
     try:
         language = Language.objects.get(id=pk)
-    except:
-        print('No item')
+    except Language.DoesNotExist:
+        return HttpResponse(status=404)
 
     if request.method == 'GET':
         serializer = LanguageSerializer(language)
-        return Response(serializer.data)
+        return JsonResponse(serializer.data)
 
     elif request.method == 'PUT':
-        serializer = LanguageSerializer(instance=language, data=request.data)
+        data = JSONParser().parse(request)
+        serializer = LanguageSerializer(instance=language, data=data)
         if serializer.is_valid():
             serializer.save()
-        return Response(serializer.data)
+        return JsonResponse(serializer.data)
 
     elif request.method == 'DELETE':
         language.delete()
-        return Response("Task Deleted Successfully")
+        return HttpResponse(status=204)
 
 
 

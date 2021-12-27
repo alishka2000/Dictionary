@@ -18,8 +18,8 @@ urlpatterns = [
     # This url for 2 table Language
     path('', views.apiOverview, name="api-overview"),
     path('language-list', views.languages, name="language-list"),
-    path('language/<str:pk>/', views.languages, name="language-item"),
-    path('language/', views.language, name="language-create"),
+    path('language/<str:pk>/', views.language, name="language-item"),
+    path('language/', views.languages, name="language-create"),
     path('language/<str:pk>', views.language, name="language-update"),
     path('language/<str:pk>', views.language, name="language-delete"),
 ]
