@@ -163,7 +163,7 @@ we take :
     "lang": 1
 }
 ```
-###DELETE
+###DELETE###
 
 URL: app/dictionary/<str:pk>   
 where: <str:pk> is 'id'
