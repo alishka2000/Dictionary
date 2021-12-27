@@ -6,6 +6,8 @@ from .models import Dictionary
 from .models import Language
 from .serializer import DictionarySerializer
 from .serializer import LanguageSerializer
+from django.shortcuts import render
+from django.views import View
 
 # This 'GET' method give to client information about site's URL. And which URL we have.
 @api_view(['GET'])
@@ -20,6 +22,11 @@ def apiOverview(request):
     }
     return Response(api_urls)
 
+class Index(View):
+    template = 'index.html'
+
+    def get(self, request):
+        return render(request, self.template)
 
 
 @api_view(['GET', 'POST'])

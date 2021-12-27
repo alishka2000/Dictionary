@@ -2,12 +2,16 @@
 from django.urls import path
 from . import views
 
+from django.contrib import admin
+from django.urls import path
+from dictionaryapp import views
+
 urlpatterns = [
     # This url for 1 table Dictionary
     path('', views.apiOverview, name="api-overview"),
     path('dictionary-list', views.dictionaries, name="dictionary-list"),
-    path('dictionary/', views.dictionary, name="dictionary-create"),
-    path('dictionary/<str:pk>/', views.dictionaries, name="dictionary-item"),
+    path('dictionary/', views.dictionaries, name="dictionary-create"),
+    path('dictionary/<str:pk>/', views.dictionary, name="dictionary-item"),
     path('dictionary/<str:pk>', views.dictionary, name="dictionary-update"),
     path('dictionary/<str:pk>', views.dictionary, name="dictionary-delete"),
 
