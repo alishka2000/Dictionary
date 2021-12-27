@@ -1,3 +1,5 @@
+###GET ALL ITEM
+
 URL: api/language-list                
 
 ```yaml
@@ -53,6 +55,8 @@ Give this result:
 ]
 ```
 
+###CREATE ITEM
+
 ```yaml
 URL: app/dictionary/
 ``` 
@@ -92,6 +96,8 @@ and then it seems like :
 }
 ```
 
+###GET ITEM
+
 URL: app/dictionary/<str:pk>/   
 where: <str:pk>/ is 'id'
 
@@ -119,6 +125,8 @@ we take :
     "lang": 1
 }
 ```
+
+###UPDATE
 
 URL: app/dictionary/<str:pk>   
 where: <str:pk> is 'id'
@@ -155,6 +163,7 @@ we take :
     "lang": 1
 }
 ```
+###DELETE
 
 URL: app/dictionary/<str:pk>   
 where: <str:pk> is 'id'
